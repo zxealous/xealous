@@ -7,6 +7,9 @@
 
 #include <list>
 
+/*
+ * 倒序遍历数组
+ */
 class PrintListReversingly {
 public:
     static void printListReversingly(std::list<int> list);

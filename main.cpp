@@ -5,6 +5,7 @@
 #include "04_FindNum/FindNum.h"
 #include "05_ReplaceBlank/ReplaceBlank.h"
 #include "06_PrintListReversingly/PrintListReversingly.h"
+#include "07_Tree/Tree.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -62,6 +63,35 @@ int main() {
     }
     PrintListReversingly::printListReversingly(list);
     std::cout << "==============Test PrintListReversingly::printListReversingly===========" << std::endl;
+
+    std::cout << "==============Test Tree===========" << std::endl;
+    //get a tree
+    TreeNode *pRoot = new TreeNode(10);
+    pRoot->pLeft = new TreeNode(6);
+    pRoot->pRight = new TreeNode(14);
+    pRoot->pLeft->pLeft = new TreeNode(4);
+    pRoot->pLeft->pRight = new TreeNode(8);
+    pRoot->pRight->pLeft = new TreeNode(12);
+    pRoot->pRight->pRight = new TreeNode(16);
+    std::cout << "Pre Order: ";
+    Tree::preOrder(pRoot);
+    std::cout << std::endl;
+    std::cout << "In Order: ";
+    Tree::inOrder(pRoot);
+    std::cout << std::endl;
+    std::cout << "Post Order: ";
+    Tree::postOrder(pRoot);
+    std::cout << std::endl;
+    std::cout << "Pre Order(Loop): ";
+    Tree::preOrderLoop(pRoot);
+    std::cout << std::endl;
+    std::cout << "In Order(Loop): ";
+    Tree::inOrderLoop(pRoot);
+    std::cout << std::endl;
+    std::cout << "Post Order(Loop): ";
+    Tree::postOrderLoop(pRoot);
+    std::cout << std::endl;
+    std::cout << "==============Test Tree===========" << std::endl;
 
     return 0;
 }
