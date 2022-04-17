@@ -4,6 +4,8 @@
 
 #include "Tree.h"
 
+std::unordered_map<int, int> Tree::index = {};
+
 void Tree::preOrder(TreeNode *pRoot) {
     if (pRoot == nullptr)
         return;
@@ -98,4 +100,31 @@ void Tree::postOrderLoop(TreeNode *pRoot) {
             }
         }
     }
+}
+
+TreeNode * Tree::buildTree(std::vector<int>& preorder, std::vector<int>& inorder) {
+    if (preorder.empty() || inorder.empty())
+        return nullptr;
+
+    for (int i = 0; i < inorder.size(); ++i) {
+        index[inorder[i]] = i;
+    }
+
+    return myBuildTree(preorder, inorder, 0, preorder.size() - 1, 0, inorder.size() - 1);
+}
+
+TreeNode * Tree::myBuildTree(std::vector<int>& preorder, std::vector<int>& inorder,
+                       int preLeft, int preRight, int inLeft, int inRight) {
+    if (preLeft > preRight)
+        return nullptr;
+
+    int preRoot = preLeft;
+    int inRoot = index[preorder[preRoot]];
+    int leftTreeNum = inRoot - inLeft;
+
+    auto * pRoot = new TreeNode(preorder[preRoot]);
+
+    pRoot->pLeft = myBuildTree(preorder, inorder, preLeft + 1, preLeft + leftTreeNum, inLeft, inRoot - 1);
+    pRoot->pRight = myBuildTree(preorder, inorder, preLeft + leftTreeNum + 1, preRight, inRoot + 1, inRight);
+    return pRoot;
 }

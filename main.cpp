@@ -91,6 +91,19 @@ int main() {
     std::cout << "Post Order(Loop): ";
     Tree::postOrderLoop(pRoot);
     std::cout << std::endl;
+
+    std::cout << "==============Test Tree::buildTree===========" << std::endl;
+    std::vector<int> preOrder = {3,9,20,15,7};
+    std::vector<int> inOrder = {9,3,15,20,7};
+    TreeNode * pTree = Tree::buildTree(preOrder, inOrder);
+    std::cout << "Pre Order: ";
+    Tree::preOrder(pTree);
+    std::cout << std::endl;
+    std::cout << "In Order: ";
+    Tree::inOrder(pTree);
+    std::cout << std::endl;
+    std::cout << "==============Test Tree::buildTree===========" << std::endl;
+
     std::cout << "==============Test Tree===========" << std::endl;
 
     return 0;
