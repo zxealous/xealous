@@ -6,6 +6,8 @@
 #include "05_ReplaceBlank/ReplaceBlank.h"
 #include "06_PrintListReversingly/PrintListReversingly.h"
 #include "07_Tree/Tree.h"
+#include "09_StackToQueue/StackToQueue.h"
+#include "10_Fibonacci/Fibonacci.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -106,5 +108,27 @@ int main() {
 
     std::cout << "==============Test Tree===========" << std::endl;
 
-    return 0;
+    /*
+    std::cout << "==============Test Stack to Queue===========" << std::endl;
+    StackToQueue<int> stackToQueue;
+    stackToQueue.appendTail(1);
+    stackToQueue.appendTail(2);
+    stackToQueue.appendTail(3);
+    stackToQueue.appendTail(4);
+    stackToQueue.appendTail(5);
+    for (int i  = 0; i < 5; ++i) {
+        std::cout << "deleteHead: " << stackToQueue.deleteHead() << std::endl;
+    }
+    std::cout << "==============Test Stack to Queue===========" << std::endl;
+     */
+
+    std::cout << "==============Test Fibonacci===========" << std::endl;
+    std::cout << "fibonacci: " << Fibonacci::fibonacci(2) << std::endl;
+    std::cout << "fibonacci: " << Fibonacci::fibonacci(3) << std::endl;
+    std::cout << "fibonacci: " << Fibonacci::fibonacci(4) << std::endl;
+    std::cout << "fibonacci: " << Fibonacci::fibonacci(5) << std::endl;
+    std::cout << "fibonacci: " << Fibonacci::fibonacci(6) << std::endl;
+    std::cout << "==============Test Fibonacci===========" << std::endl;
+
+    return  0;
 }
