@@ -8,6 +8,7 @@
 #include "07_Tree/Tree.h"
 #include "09_StackToQueue/StackToQueue.h"
 #include "10_Fibonacci/Fibonacci.h"
+#include "LRU/LRUCache.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -129,6 +130,12 @@ int main() {
     std::cout << "fibonacci: " << Fibonacci::fibonacci(5) << std::endl;
     std::cout << "fibonacci: " << Fibonacci::fibonacci(6) << std::endl;
     std::cout << "==============Test Fibonacci===========" << std::endl;
+
+    std::cout << "==============Test LRU===========" << std::endl;
+    LRUCache lru(1);
+    lru.put(2, 1);
+    std::cout << "lru.get(2) = " << lru.get(2) << std::endl;
+    std::cout << "==============Test LRU===========" << std::endl;
 
     return  0;
 }
