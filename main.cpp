@@ -10,6 +10,7 @@
 #include "10_Fibonacci/Fibonacci.h"
 #include "LRU/LRUCache.h"
 #include "Sort/Sort.h"
+#include "ThreadAndLock/ThreadAndSafe.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -146,6 +147,8 @@ int main() {
         std::cout << ite << " ";
     std::cout << std::endl;
     std::cout << "==============Test Sort===========" << std::endl;
+
+    ThreadAndSafe::testUniqueLock();
 
     return  0;
 }
