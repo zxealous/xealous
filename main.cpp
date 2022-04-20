@@ -9,6 +9,7 @@
 #include "09_StackToQueue/StackToQueue.h"
 #include "10_Fibonacci/Fibonacci.h"
 #include "LRU/LRUCache.h"
+#include "Sort/Sort.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -136,6 +137,15 @@ int main() {
     lru.put(2, 1);
     std::cout << "lru.get(2) = " << lru.get(2) << std::endl;
     std::cout << "==============Test LRU===========" << std::endl;
+
+    std::cout << "==============Test Sort===========" << std::endl;
+    std::vector<int> sortVec = {3, 29, 7, 56, 13, 6, 33, 66};
+    Sort::QuickSort(sortVec);
+    std::cout << "sortVec: ";
+    for (auto ite : sortVec)
+        std::cout << ite << " ";
+    std::cout << std::endl;
+    std::cout << "==============Test Sort===========" << std::endl;
 
     return  0;
 }
