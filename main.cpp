@@ -148,7 +148,15 @@ int main() {
     std::cout << std::endl;
     std::cout << "==============Test Sort===========" << std::endl;
 
-    ThreadAndSafe::testUniqueLock();
+    //ThreadAndSafe::testUniqueLock();
+
+    std::cout << "==============Test Heap Sort===========" << std::endl;
+    std::vector<int> vecHeapSort = { 3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6 };
+    Sort::HeapSort(vecHeapSort);
+    for (auto ite : vecHeapSort)
+        std::cout << ite << " ";
+    std::cout << std::endl;
+    std::cout << "==============Test Heap Sort===========" << std::endl;
 
     return  0;
 }

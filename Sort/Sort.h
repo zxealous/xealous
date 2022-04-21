@@ -35,6 +35,47 @@ public:
         std::swap(vec[low], pivot);
         return low;
     }
+
+    /*
+     *             3
+     *          /     \
+     *        29       7
+     *       /  \     /  \
+     *      56  13   6    33
+     *     /
+     *    66
+     */
+    //std::vector<int> vec = {3, 29, 7, 56, 13, 6, 33, 66};
+    static void buildMaxHeap(std::vector<int> & vec, int start, int end) {
+        int dad = start;
+        int son = start * 2 + 1;
+        while (son <= end) {
+            if (son + 1 <= end && vec[son + 1] > vec[son])
+                ++son;
+            if (vec[dad] > vec[son])
+                return;
+            else {
+                std::swap(vec[dad], vec[son]);
+                dad = son;
+                son = dad * 2 + 1;
+            }
+        }
+    }
+
+    static void HeapSort(std::vector<int> & vec) {
+        if (vec.empty())
+            return;
+
+        //build max heap from last dad
+        for (int i = vec.size() / 2 - 1; i >= 0; --i)
+            buildMaxHeap(vec, i, vec.size() - 1);
+
+        for (int i = vec.size() - 1; i > 0; --i) {
+            std::swap(vec[0], vec[i]);
+            //build max heap from root because it swap with last node
+            buildMaxHeap(vec, 0, i - 1);
+        }
+    }
 };
 
 #endif //XEALOUS_SORT_H
