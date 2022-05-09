@@ -18,6 +18,9 @@ void getSingletonObject(){
     SingletonLazy * instance = &SingletonLazy::getSingletonLazy();
 }
 
+std::uintptr_t getUInt(int * data) { return reinterpret_cast<std::uintptr_t>(data); }
+int * getPtr(std::uintptr_t data) { return reinterpret_cast<int *>(data); }
+
 int main() {
     std::cout << "Hello, World!" << std::endl;
     std::cout << "You are so great!" << std::endl;
@@ -167,17 +170,29 @@ int main() {
     std::uintptr_t IS_NEED = 1;
     std::uintptr_t IS_FINISHED = 2;
     std::uintptr_t mark = IS_FINISHED | IS_NEED;
+    std::uintptr_t used_mark = ~mark;
 
-    if (IS_NEED & mark)
-        std::cout << "IS_NEED & 1 = 1" << std::endl;
+    used_mark = used_mark | IS_NEED;
+    std::cout << "used_mark = " << used_mark << std::endl;
+    if (IS_NEED & used_mark)
+        std::cout << "IS_NEED & used_mark = 1" << std::endl;
     else
-        std::cout << "IS_NEED & 1 = 0" << std::endl;
+        std::cout << "IS_NEED & used_mark = 0" << std::endl;
 
-    if (IS_FINISHED & mark)
-        std::cout << "IS_FINISHED & 2 = 1" << std::endl;
+    if (IS_FINISHED & used_mark)
+        std::cout << "IS_FINISHED & used_mark = 1" << std::endl;
     else
-        std::cout << "IS_FINISHED & 2 = 0" << std::endl;
+        std::cout << "IS_FINISHED & used_mark = 0" << std::endl;
     std::cout << "==============Test use uintptr_t as marker===========" << std::endl;
+
+    std::cout << "==============Test use uintptr_t===========" << std::endl;
+    int num = 1;
+    std::uintptr_t data = getUInt(&num);
+    std::cout << "data: " << data << std::endl;
+    int * testPtr = getPtr(data);
+    std::cout << "testPtr: " << testPtr << std::endl;
+    std::cout << "*testPtr: " << *testPtr << std::endl;
+    std::cout << "==============Test use uintptr_t===========" << std::endl;
 
     return  0;
 }
