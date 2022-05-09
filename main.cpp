@@ -158,5 +158,26 @@ int main() {
     std::cout << std::endl;
     std::cout << "==============Test Heap Sort===========" << std::endl;
 
+    std::cout << "==============Test std::make_unique===========" << std::endl;
+    auto ptr = std::make_unique<FindNum>();
+    ptr->findNumInVector(vec2, 6);
+    std::cout << "==============Test std::make_unique===========" << std::endl;
+
+    std::cout << "==============Test use uintptr_t as marker===========" << std::endl;
+    std::uintptr_t IS_NEED = 1;
+    std::uintptr_t IS_FINISHED = 2;
+    std::uintptr_t mark = IS_FINISHED | IS_NEED;
+
+    if (IS_NEED & mark)
+        std::cout << "IS_NEED & 1 = 1" << std::endl;
+    else
+        std::cout << "IS_NEED & 1 = 0" << std::endl;
+
+    if (IS_FINISHED & mark)
+        std::cout << "IS_FINISHED & 2 = 1" << std::endl;
+    else
+        std::cout << "IS_FINISHED & 2 = 0" << std::endl;
+    std::cout << "==============Test use uintptr_t as marker===========" << std::endl;
+
     return  0;
 }
