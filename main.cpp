@@ -11,6 +11,7 @@
 #include "LRU/LRUCache.h"
 #include "Sort/Sort.h"
 #include "ThreadAndLock/ThreadAndSafe.h"
+#include "TestRandom/StructInClass.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -193,6 +194,9 @@ int main() {
     std::cout << "testPtr: " << testPtr << std::endl;
     std::cout << "*testPtr: " << *testPtr << std::endl;
     std::cout << "==============Test use uintptr_t===========" << std::endl;
+
+    StructInClass::node * pNode = new StructInClass::node(1);
+    std::cout << "pNode->num = " << pNode->num << std::endl;
 
     return  0;
 }
