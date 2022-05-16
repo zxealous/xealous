@@ -12,6 +12,7 @@
 #include "Sort/Sort.h"
 #include "ThreadAndLock/ThreadAndSafe.h"
 #include "TestRandom/StructInClass.h"
+#include "Dynamic-Programming/KingAndGold.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -197,6 +198,12 @@ int main() {
 
     StructInClass::node * pNode = new StructInClass::node(1);
     std::cout << "pNode->num = " << pNode->num << std::endl;
+
+    KingAndGold k;
+    std::vector<int> g = {400, 500, 200, 300, 350};
+    std::vector<int> p = {5, 5, 3, 4, 3};
+    std::cout << "Max value: " << k.KingAndGoldRecursion(5, 10, g, p) << std::endl;
+    std::cout << "Max value: " << k.getMostGold(5, 10, g, p) << std::endl;
 
     return  0;
 }
