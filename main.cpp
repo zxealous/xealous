@@ -202,12 +202,12 @@ int main() {
     std::cout << "==============Test struct in class===========" << std::endl;
 
     std::cout << "==============Test DP King And Gold===========" << std::endl;
-    KingAndGold k;
+    KingAndGold kingAndGold;
     std::vector<int> g = {400, 500, 200, 300, 350};
     std::vector<int> p = {5, 5, 3, 4, 3};
-    std::cout << "[Recursion]Max value: " << k.KingAndGoldRecursion(5, 10, g, p) << std::endl;
-    std::cout << "[DP]Max value: " << k.getMostGold(5, 10, g, p) << std::endl;
-    std::cout << "[DP-Optimization]Max value: " << k.getMostGoldOptimization(5, 10, g, p) << std::endl;
+    std::cout << "[Recursion]Max value: " << kingAndGold.KingAndGoldRecursion(5, 10, g, p) << std::endl;
+    std::cout << "[DP]Max value: " << kingAndGold.getMostGold(5, 10, g, p) << std::endl;
+    std::cout << "[DP-Optimization]Max value: " << kingAndGold.getMostGoldOptimization(5, 10, g, p) << std::endl;
     std::cout << "==============Test DP King And Gold===========" << std::endl;
 
     return  0;
