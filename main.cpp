@@ -204,11 +204,11 @@ int main() {
 
     std::cout << "==============Test DP King And Gold===========" << std::endl;
     KingAndGold kingAndGold;
-    std::vector<int> g = {400, 500, 200, 300, 350};
-    std::vector<int> p = {5, 5, 3, 4, 3};
-    std::cout << "[Recursion]Max value: " << kingAndGold.KingAndGoldRecursion(5, 10, g, p) << std::endl;
-    std::cout << "[DP]Max value: " << kingAndGold.getMostGold(5, 10, g, p) << std::endl;
-    std::cout << "[DP-Optimization]Max value: " << kingAndGold.getMostGoldOptimization(5, 10, g, p) << std::endl;
+    std::vector<int> gold = {400, 500, 200, 300, 350};
+    std::vector<int> person = {5, 5, 3, 4, 3};
+    std::cout << "[Recursion]Max value: " << kingAndGold.KingAndGoldRecursion(5, 10, gold, person) << std::endl;
+    std::cout << "[DP]Max value: " << kingAndGold.getMostGold(5, 10, gold, person) << std::endl;
+    std::cout << "[DP-Optimization]Max value: " << kingAndGold.getMostGoldOptimization(5, 10, gold, person) << std::endl;
     std::cout << "==============Test DP King And Gold===========" << std::endl;
 
     std::vector<std::vector<int>> vecTriangle = {{7}, {3,8}, {8,1,0}, {2,7,4,4}, {4,5,2,6,5}};
