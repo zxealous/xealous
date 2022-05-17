@@ -13,6 +13,7 @@
 #include "ThreadAndLock/ThreadAndSafe.h"
 #include "TestRandom/StructInClass.h"
 #include "Dynamic-Programming/KingAndGold.h"
+#include "Dynamic-Programming/TriangleMaxPathSum.h"
 
 void getSingletonObject(){
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -209,6 +210,11 @@ int main() {
     std::cout << "[DP]Max value: " << kingAndGold.getMostGold(5, 10, g, p) << std::endl;
     std::cout << "[DP-Optimization]Max value: " << kingAndGold.getMostGoldOptimization(5, 10, g, p) << std::endl;
     std::cout << "==============Test DP King And Gold===========" << std::endl;
+
+    std::vector<std::vector<int>> vecTriangle = {{7}, {3,8}, {8,1,0}, {2,7,4,4}, {4,5,2,6,5}};
+    TriangleMaxPathSum triangleMaxPathSum;
+    int pos;
+    std::cout << "Max Path Sum: " << triangleMaxPathSum.getMaxPathSumRecursion(vecTriangle, 5, pos) << std::endl;
 
     return  0;
 }
