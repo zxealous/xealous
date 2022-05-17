@@ -28,6 +28,9 @@ public:
     }
 
     // 动态规划
+    /* 实际上可以通过最右子结构观察到，每次计算的时候只用到了上一行的数据，即计算金矿为1时的最大收益只会用到金矿为0时的数据，因此下面的
+     * 实现多记录了很多数据，实际上只记录上一行就可以了，后面再写一个优化的版本吧
+     */
     int getMostGold(int n, int w, const std::vector<int> & g, const std::vector<int> & p) {
         std::vector<int> vecTmp;
         std::vector<std::vector<int> > vec;
@@ -36,33 +39,32 @@ public:
 
         // 外层循环为遍历不同金矿时的场景，金矿个数从0 -> n
         for (int i = 0; i < n; ++i) {
-            // 内层循环为遍历不同工人时的场景
-            for (int j = 0; j < w; ++j) {
-                if (i == 0 && j+1 < p[i]) {
-                    vecTmp.push_back(0);
-                    continue;
-                }
-                if (i == 0 && j+1 >= p[i]) {
-                    vecTmp.push_back(g[i]);
-                    continue;
-                }
-                if (j+1 < p[i])
-                    vecTmp.push_back(vec[i-1][j]);
-                if (j+1 >= p[i]) {
-                    vecTmp.push_back(std::max(vec[i-1][j], vec[i-1][j+1-p[i]] + g[i]));
-                    //std::cout << "vec[i-1][j]: " << vec[i-1][j] << std::endl;
-                    //std::cout << "vec[i-1][j-p[i]] + g[i]: " << vec[i-1][j-p[i]] + g[i] << std::endl;
-                }
-
+            // 内层循环为遍历不同工人时的场景，j代表工人个数，所以j <= w，j = 0代表有0个工人
+            for (int j = 0; j <= w; ++j) {
+                 if (i == 0 && j < p[i]) {
+                     vecTmp.push_back(0);
+                     continue;
+                 }
+                 if (i == 0 && j >= p[i]) {
+                     vecTmp.push_back(g[i]);
+                     continue;
+                 }
+                 // j 代表工人数，同时代表下标，j = 1代表有一个工人
+                 if (j < p[i])
+                     vecTmp.push_back(vec[i-1][j]);
+                 else // vec[i-1][j - p[i]] 这里由于是下标  所以应该是j - p[i] 而不是j+1 - p[i]
+                     vecTmp.push_back(std::max(vec[i-1][j], vec[i-1][j - p[i]] + g[i]));
             }
+
             for (auto ite : vecTmp) {
                 std::cout << ite << " ";
             }
             std::cout << std::endl;
+
             vec.emplace_back(std::move(vecTmp));
         }
 
-        return vec[n-1][w-1];
+        return vec[n-1][w];
     }
 };
 
