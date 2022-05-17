@@ -9,8 +9,8 @@
 #include <vector>
 
 /* 题目: 国王和金矿
- * 有一个国家发现了5座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同。参与挖矿工人的总数是10人。每座金矿要么全挖，要么不挖，
- * 不能派出一半人挖取一半金矿。要求用程序求解出，要想得到尽可能多的黄金，应该选择挖取哪几座金矿？
+ * 描述：有一个国家发现了5座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同。参与挖矿工人的总数是10人。每座金矿要么全挖，要么不挖，
+ *      不能派出一半人挖取一半金矿。要求用程序求解出，要想得到尽可能多的黄金，应该选择挖取哪几座金矿？
  */
 
 class KingAndGold {
@@ -56,15 +56,37 @@ public:
                      vecTmp.push_back(std::max(vec[i-1][j], vec[i-1][j - p[i]] + g[i]));
             }
 
-            for (auto ite : vecTmp) {
-                std::cout << ite << " ";
-            }
-            std::cout << std::endl;
-
             vec.emplace_back(std::move(vecTmp));
         }
 
         return vec[n-1][w];
+    }
+
+    int getMostGoldOptimization(int n, int w, const std::vector<int> & g, const std::vector<int> & p) {
+        // 首先先把第一行 金矿数为1时的边界处理好
+        std::vector<int> preVec;
+        std::vector<int> vec;
+
+        // 填充preVec，即当有1坐金矿的时候
+        for (int i = 0; i <= w; ++i) {
+            if (i < p[0])
+                preVec.push_back(0);
+            else
+                preVec.push_back(g[0]);
+        }
+
+        // 外层循环为金矿数量
+        for (int i = 0; i < n; ++i) {
+            // 内层循环为工人总数
+            for (int j = 0; j <= w; ++j) {
+                if (j < p[i])
+                    vec.push_back(preVec[j]);
+                else
+                    vec.push_back(std::max(preVec[j], preVec[j - p[i]] + g[i]));
+            }
+            preVec = std::move(vec);
+        }
+        return preVec[w];
     }
 };
 
