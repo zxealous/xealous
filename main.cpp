@@ -213,8 +213,7 @@ int main() {
 
     std::vector<std::vector<int>> vecTriangle = {{7}, {3,8}, {8,1,0}, {2,7,4,4}, {4,5,2,6,5}};
     TriangleMaxPathSum triangleMaxPathSum;
-    int pos;
-    std::cout << "Max Path Sum: " << triangleMaxPathSum.getMaxPathSumRecursion(vecTriangle, 5, pos) << std::endl;
+    std::cout << "Max Path Sum: " << triangleMaxPathSum.getMaxPathSumRecursion(vecTriangle, 0, 0) << std::endl;
 
     return  0;
 }

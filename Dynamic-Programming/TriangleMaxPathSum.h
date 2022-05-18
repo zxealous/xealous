@@ -30,8 +30,8 @@
 class TriangleMaxPathSum {
 public:
     /*
-     * 当做一个错误示例吧，这种递归方式相当于是临界点是00，也就是相当与从00位置开始 每次判断下方还是下右的值比较大
-     * 实际上应该从最大行和最大列的点开始，从三角形的右下角向左上角
+     * 当做一个错误示例吧，这种递归方式相当于是临界点是00(递归栈底为00)，也就是相当与从位置开始 每次判断下方还是下右的值比较大
+     * 实际上应该从00开始，每次取下一行j,j+1两个值为起点时的最大路径，直至取到最大行。
     int getMaxPathSumRecursion(std::vector<std::vector<int>> vec, int n, int & pos) {
         if (n == 1) {
             pos = 0;
@@ -45,6 +45,18 @@ public:
             return tmp + vec[n - 1][++pos];
     }
     */
+    /* 正确思路为：
+     * 从顶点00开始，每次取下一行j,j+1两个值为起点时的最大路径(此处为递归)，直至最大行
+     * vec: 传入的三角形
+     * i: 起始行(当前行)
+     * j: 起始列(当前列)
+     */
+    int getMaxPathSumRecursion(std::vector<std::vector<int>> vec, int i, int j) {
+        if (i == vec.size() - 1)
+            return vec[i][j];
+
+        return std::max(getMaxPathSumRecursion(vec, i+1, j), getMaxPathSumRecursion(vec, i+1, j+1)) + vec[i][j];
+    }
 };
 
 #endif //XEALOUS_TRIANGLEMAXPATHSUM_H
