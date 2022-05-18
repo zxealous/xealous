@@ -215,6 +215,7 @@ int main() {
     std::vector<std::vector<int>> vecTriangle = {{7}, {3,8}, {8,1,0}, {2,7,4,4}, {4,5,2,6,5}};
     TriangleMaxPathSum triangleMaxPathSum;
     std::cout << "Max Path Sum: " << triangleMaxPathSum.getMaxPathSumRecursion(vecTriangle, 0, 0) << std::endl;
+    std::cout << "Max Path Sum: " << triangleMaxPathSum.getMaxPathSumDp(vecTriangle) << std::endl;
     std::cout << "==============Test DP Triangle Max Path Sum===========" << std::endl;
 
     return  0;

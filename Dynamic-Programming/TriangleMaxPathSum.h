@@ -57,6 +57,35 @@ public:
 
         return std::max(getMaxPathSumRecursion(vec, i+1, j), getMaxPathSumRecursion(vec, i+1, j+1)) + vec[i][j];
     }
+
+    int getMaxPathSumDp(std::vector<std::vector<int>> vec) {
+        std::vector<std::vector<int>> res(vec.size());
+        std::vector<int> tmp;
+        int vecSize = vec.size();
+        // 首先处理边界，也就是i为最大行时
+        for (int m = 0; m < vecSize; ++m) {
+            tmp.push_back(vec[vecSize - 1][m]);
+        }
+        res[vecSize - 1] = std::move(tmp);
+
+        for (int m = vecSize - 2; m >= 0; --m) {
+            for (int n = 0; n <= m; ++n) {
+                tmp.push_back(vec[m][n] + std::max(res[m+1][n], res[m+1][n+1]));
+            }
+            res[m] = std::move(tmp);
+        }
+
+        /*
+        for (int i = 0; i < vecSize; ++i) {
+            for (int j = 0; j <= i; ++j) {
+                std::cout << res[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+        */
+
+        return res[0][0];
+    }
 };
 
 #endif //XEALOUS_TRIANGLEMAXPATHSUM_H
