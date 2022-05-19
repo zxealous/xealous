@@ -88,6 +88,26 @@ public:
 
         return res[0][0];
     }
+
+    // 突然发现和获取King And Gold一样，不需要保存所有的值，只需要保存前一列的各个位置的最大值
+    int getMaxPathSumDpOptimizatioin(std::vector<std::vector<int>> triangle) {
+        std::vector<int> vecPre;
+        std::vector<int> vec;
+
+        int nSize = triangle.size();
+        for (int i = 0; i < nSize - 1; ++i) {
+            vecPre.push_back(triangle[nSize - 1][i]);
+        }
+
+        for (int i = nSize - 2; i >= 0; --i) {
+            for (int j = 0; j <= i; ++j) {
+                vec.push_back(triangle[i][j] + std::max(vecPre[j], vecPre[j+1]));
+            }
+            vecPre = std::move(vec);
+        }
+
+        return vecPre[0];
+    }
 };
 
 #endif //XEALOUS_TRIANGLEMAXPATHSUM_H
